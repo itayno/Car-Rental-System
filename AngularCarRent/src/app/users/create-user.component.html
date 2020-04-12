@@ -1,0 +1,154 @@
+
+
+<form #userForm="ngForm" ngNativeValidate (ngSubmit)="Create(user)" >
+<div class = "panel panel-primary" >
+
+    <div class="panel-heading">
+      <h3 class="panel-title"> Create User  </h3>
+    </div>
+
+    <div class="panel-body">
+
+      <div class="form-group"  [class.has-success]="FirstNameControl.valid" [class.has-error]="FirstNameControl.invalid && FirstNameControl.touched">
+        <label class="control-label" for="FirstName">First Name </label>
+        <input  #FirstNameControl="ngModel" required id="FirstName" name="FirstName" [(ngModel)]="user.FirstName" type="text" class="form-control">
+        <span class="help-block" *ngIf="FirstNameControl.invalid && FirstNameControl.touched">
+            First Name is required
+          </span>
+
+
+        
+      </div>
+      
+      
+
+      <div class="form-group" [class.has-success]="FirstNameControl.valid" [class.has-error]="LastNameControl.invalid && LastNameControl.touched">
+          <label for="LastName">Last Name </label>
+          <input #LastNameControl="ngModel" required id="LastName" name="LastName" [(ngModel)]="user.LastName" type="text" class="form-control">
+          <span class="help-block" *ngIf="LastNameControl.invalid && LastNameControl.touched">
+            Last Name is required
+          </span>
+        </div>
+
+        
+
+          <div class="form-group" [class.has-success]="UserNameControl.valid" [class.has-error]="UserNameControl.invalid && UserNameControl.touched">
+              <label for="UserName">User Name </label>
+              <input #UserNameControl="ngModel" required id="UserName" name="UserName" [(ngModel)]="user.UserName"  type="text" class="form-control">
+              <span class="help-block" *ngIf="UserNameControl.invalid && UserNameControl.touched">
+                User Name is required
+              </span>
+            </div>
+
+            <div class="form-group"
+     [class.has-error]="userPassword.touched && userPassword.invalid">
+  <label for="userPassword" class="control-label">Password</label>
+  <input id="userPassword" required type="text" class="form-control"
+         name="userPassword" [(ngModel)]="user.userPassword"
+         #password="ngModel">
+  <span class="help-block"
+        *ngIf="userPassword.touched && userPassword.errors?.required">
+    Password is required
+  </span>
+</div>
+
+              <div class="form-group"
+     [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
+  <label for="confirmPassword" class="control-label">Confirm Password</label>
+  <input name="confirmPassword" appConfirmEqualValidator="password" required
+         id="confirmPassword" type="text" class="form-control"
+         [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel">
+  <span class="help-block"
+        *ngIf="confirmPassword.touched && confirmPassword.errors?.required">
+    Confirm Password is required
+  </span>
+  <span class="help-block"
+        *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual &&
+          !confirmPassword.errors?.required">
+    Password and Confirm Password does not match
+  </span>
+</div>
+
+              <div class="form-group " [class.has-success]="DateOfBirthControl.valid" [class.has-error]="DateOfBirthControl.invalid && DateOfBirthControl.touched">
+                  <label for="DateOfBirth">Date Of Birth </label>
+                  <input #DateOfBirthControl="ngModel" required id="DateOfBirth" name="DateOfBirth" [(ngModel)]="user.DateOfBirth" type="date"  class="form-control">
+                  <span class="help-block" *ngIf="DateOfBirthControl.invalid && DateOfBirthControl.touched">
+                    Date Of Birth is required
+                  </span>
+                </div>
+
+                
+
+
+      <div class="form-group" [class.has-success]="EmailControl.valid" [class.has-error]="EmailControl.invalid && EmailControl.touched">
+        <label for="Email" class="control-label"> Email </label>
+        <input #EmailControl="ngModel" required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" id="Email" name="Email" [(ngModel)]="user.Email" type="text" class="form-control">
+      <span class="help-block" *ngIf="EmailControl.errors?.required && EmailControl.touched">
+        Email is required
+      </span>
+      <span class="help-block" *ngIf="EmailControl.errors?.pattern && LastNameControl.touched">
+        Email is invalid
+      </span>
+    </div>
+
+    
+
+        
+ 
+      
+
+
+
+    <div class="form-group" [class.has-error]="Gender.invalid  && Gender.touched"> 
+        <label class="control-label"> Gender </label>
+      <div class="form-control">  
+      <label class="radio-inline">
+        <input type="radio" required value="male" #Gender="ngModel" name="Gender" [(ngModel)]="user.Gender">
+        Male
+      </label>
+      <label class="radio-inline">
+          <input type="radio" required value="female" #Gender="ngModel" name="Gender" [(ngModel)]="user.Gender">
+          Female
+     </label>
+     <span class="help-block" *ngIf="Gender.invalid  && Gender.touched">
+      gender is required
+    </span>
+     </div>
+<br>
+     <div class="form-check" [class.has-error]="Gender.invalid  && Gender.touched">
+      <label for="IsAdmin">Is Admin?  </label> <br>
+      <input #IsAdminControl="ngModel" value="IsAdmin" id="IsAdmin" name="IsAdmin" [(ngModel)]="user.IsAdmin"  type="checkbox" class="form-check-input">
+      <span class="help-block" *ngIf="IsAdminControl.invalid  && IsAdminControl.touched">
+        is Admin is required
+      </span>
+    </div>
+
+    <h1> file upload </h1>
+<input type = "file" (change)="handleFileSelect($event)">
+
+
+    
+    </div>
+  </div>
+
+    
+      <div  class="panel-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+      </div>-->
+
+       <!-- <div  *ngIf="nav.SignUp" class="panel-footer">
+          <button routerLink="/login" type="submit" class="btn btn-primary">sign up Save</button>
+      </div>-->
+
+
+</div>
+
+</form>
+
+
+
+
+Angular generated form model: {{userForm.value | json}}
+<br><br>
+Our user model: {{ user | json }}
+

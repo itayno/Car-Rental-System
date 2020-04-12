@@ -1,0 +1,82 @@
+
+<form #carForm="ngForm" ngNativeValidate (ngSubmit)="Create(car)" >
+  <div class = "panel panel-primary" >
+  
+      <div class="panel-heading">
+        <h3 class="panel-title"> Create Car  </h3>
+      </div>
+  
+      <div class="panel-body">
+  
+        <div class="form-group"  [class.has-success]="CarNumberControl.valid" [class.has-error]="CarNumberControl.invalid && CarNumberControl.touched">
+          <label class="control-label" for="CarNumber">Car Number </label>
+          <input  #CarNumberControl="ngModel" required id="CarNumber" name="CarNumber" [(ngModel)]="car.CarNumber" type="text" class="form-control">
+          <span class="help-block" *ngIf="CarNumberControl.invalid && CarNumberControl.touched">
+            Car Number is required
+            </span>
+        </div>
+
+        <div class="form-group"  [class.has-success]="CarType.valid" [class.has-error]="CarType.invalid && CarType.touched">
+            <label class="control-label" for="CarType">car type </label>
+            <input  #CarType="ngModel" required id="CarType" name="CarType" [(ngModel)]="car.CarType" type="text" class="form-control">
+            <span class="help-block" *ngIf="CarType.invalid && CarType.touched">
+              CarType required
+              </span>
+          </div>
+
+          <div class="form-group"  [class.has-success]="branchId.valid" [class.has-error]="branchId.invalid && branchId.touched">
+              <label class="control-label" for="CarNumber">branch id  </label>
+              <input  #branchId="ngModel" required id="branchId" name="branchId" [(ngModel)]="car.branchId" type="text" class="form-control">
+              <span class="help-block" *ngIf="branchId.invalid && branchId.touched">
+                branch id required
+                </span>
+            </div>
+          
+        
+        
+  
+        
+  
+  
+            <div class="form-group" [class.has-success]="carMileageControl.valid" [class.has-error]="carMileageControl.invalid && carMileageControl.touched">
+                <label for="Mileage">Car Mileage </label>
+                <input #carMileageControl="ngModel" required id="Mileage" name="Mileage" [(ngModel)]="car.Mileage"  type="text" class="form-control">
+                <span class="help-block" *ngIf="carMileageControl.invalid && carMileageControl.touched">
+                  Car mileage is required
+                </span>
+              </div>
+  
+              
+  
+          
+  
+  
+  
+       <div class="form-check">
+        <label for="IsAvailable">Is Available?  </label> <br>
+        <input id="IsAvailable" name="IsAvailable" [(ngModel)]="car.IsAvailable"  type="checkbox" class="form-check-input">
+      </div>
+
+      <div class="form-check">
+        <label for="IsUndamaged">Is Undamaged?  </label> <br>
+        <input id="IsUndamaged" name="IsUndamaged" [(ngModel)]="car.IsUndamaged"  type="checkbox" class="form-check-input">
+      </div>
+
+      <input type = "file" (change)="handleFileSelect($event)">
+      
+      
+      
+    </div>
+  
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+  </div>
+  
+  </form>
+  
+  Angular generated form model: {{carForm.value | json}}
+  <br><br>>
+  Our user model: {{ car | json }}
+  
+  
